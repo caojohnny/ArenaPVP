@@ -12,6 +12,8 @@ public class ArenaPVP extends JavaPlugin{
     	new ArenaManager(this);
     	ArenaManager.getManager().loadGames();
     	
+    	getServer().getPluginManager().registerEvents(new GameListener(), this);
+    	
     	if(getConfig() == null)
     	    saveDefaultConfig();
     }
