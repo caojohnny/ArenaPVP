@@ -132,7 +132,11 @@ public class ArenaManager{
 		return false;
 	}
 	
-	public void loadGames(){	
+	public void loadGames(){
+		if(plugin.getConfig().getIntegerList("Arenas.Arenas").isEmpty()){
+			return;
+		}
+		
 		for(int i : plugin.getConfig().getIntegerList("Arenas.Arenas")){
 			Arena a = new Arena(deserializeLoc(plugin.getConfig().getString("Arenas" + i)), i);
 			arenas.add(a);
