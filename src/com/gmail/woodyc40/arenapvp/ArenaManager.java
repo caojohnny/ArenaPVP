@@ -58,6 +58,10 @@ public class ArenaManager{
 	    a.getPlayers().add(p.getName());//add them to the arena list of players
 	    inv.put(p.getName(), p.getInventory().getContents());//save inventory
 	    armor.put(p.getName(), p.getInventory().getArmorContents());
+	    
+	    p.getInventory().setArmorContents(null);
+	    p.getInventory().clear();
+	    
 	    p.teleport(a.spawn);//teleport to the arena spawn
 	}
 	   
