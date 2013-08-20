@@ -8,7 +8,7 @@ public class GameListener implements Listener{
   ArenaPVP plugin;
   
   public GameListener(ArenaPVP plugin){
-    this.plugin = plugin;
+  	this.plugin = plugin;
   }
   
   @EventHandler
@@ -22,7 +22,7 @@ public class GameListener implements Listener{
   }
   
   public static void add(Player p){
-    final String anme = p.getName();
+  	final String anme = p.getName();
     players.add(name);
     
     Bukkit.getScheduler().scheduleSyncDelayeddTask(plugin, new Runnable(){
