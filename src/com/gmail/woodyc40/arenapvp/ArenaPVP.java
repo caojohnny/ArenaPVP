@@ -11,7 +11,14 @@ public class ArenaPVP extends JavaPlugin{
     public void onEnable(){
     	new ArenaManager(this);
     	ArenaManager.getManager().loadGames();
-    	saveDefaultConfig();
+    	
+    	if(getConfig() == null)
+    	    saveDefaultConfig();
+    }
+    
+    @Override
+    public void onDisable(){
+        saveConfig();
     }
     
     @Override
