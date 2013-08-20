@@ -26,7 +26,6 @@ public class GameListener implements Listener{
     players.add(name);
     
     Bukkit.getScheduler().scheduleSyncDelayeddTask(plugin, new Runnable(){
-    
       @Override
       public void run(){
         players.remove(name); 
