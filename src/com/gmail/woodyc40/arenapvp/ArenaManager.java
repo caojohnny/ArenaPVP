@@ -63,6 +63,7 @@ public class ArenaManager{
 	    p.getInventory().clear();
 	    
 	    p.teleport(a.spawn);//teleport to the arena spawn
+	    GameListener.add(p);
 	}
 	   
 	//remove players
@@ -81,8 +82,8 @@ public class ArenaManager{
 	       
 	   a.getPlayers().remove(p.getName());//remove from arena
 	   
-	   p.getInventory().clear()
-	   p.setArmorContents(null);
+	   p.getInventory().clear();
+	   p.getInventory().setArmorContents(null);
 	   
 	   p.getInventory().setContents(inv.get(p.getName()));//restore inventory
 	   p.getInventory().setArmorContents(armor.get(p.getName()));
@@ -123,10 +124,15 @@ public class ArenaManager{
 		plugin.saveConfig();
 	}
 	
-	public void loadGames(){
-		if(plugin.getConfig().getIntegerList("Arenas.Arenas").isEmpty())
-			return;
-
+	public boolean isInGame(Player p){
+		for(Arena a : arenas){
+			if(a.getPlayers().contains(p.getName()))
+				return true;
+		}
+		return false;
+	}
+	
+	public void loadGames(){	
 		for(int i : plugin.getConfig().getIntegerList("Arenas.Arenas")){
 			Arena a = new Arena(deserializeLoc(plugin.getConfig().getString("Arenas" + i)), i);
 			arenas.add(a);
