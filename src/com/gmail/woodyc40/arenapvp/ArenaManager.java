@@ -76,6 +76,10 @@ public class ArenaManager{
 	    }
 	       
 	   a.getPlayers().remove(p.getName());//remove from arena
+	   
+	   p.getInventory().clear()
+	   p.setArmorContents(null);
+	   
 	   p.getInventory().setContents(inv.get(p.getName()));//restore inventory
 	   p.getInventory().setArmorContents(armor.get(p.getName()));
 	       
@@ -97,6 +101,7 @@ public class ArenaManager{
 	   List<Integer> list = plugin.getConfig().getIntegerList("Arenas.Arenas");
 	   list.add(num);
 	   plugin.getConfig().set("Arenas.Arenas", list);
+	   plugin.saveConfig();
 	}
 	
 	public void removeArena(int i){
@@ -108,6 +113,10 @@ public class ArenaManager{
 			}
 		}
 		arenas.remove(getArena(i));
+		List<Integer> list = plugin.getConfig().getIntegerList("Arenas.Arenas");
+		list.remove(i);
+		plugin.getConfig().set("Arenas.Arenas", list);
+		plugin.saveConfig();
 	}
 	
 	public void loadGames(){	
