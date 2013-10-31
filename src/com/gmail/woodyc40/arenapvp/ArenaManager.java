@@ -23,9 +23,9 @@ public class ArenaManager{
 	List<Arena> arenas = new ArrayList<Arena>();
 	int arenaSize = 0;
 	 
-	ArenaPVP plugin;
+	static ArenaPVP plugin;
 	public ArenaManager(ArenaPVP arenaPVP) {
-		this.plugin = arenaPVP;
+		plugin = arenaPVP;
 	}
 	
 	public ArenaManager(){
@@ -118,6 +118,7 @@ public class ArenaManager{
 			}
 		}
 		arenas.remove(getArena(i));
+		plugin.getConfig().set("Arenas" + num, null)
 		List<Integer> list = plugin.getConfig().getIntegerList("Arenas.Arenas");
 		list.remove(i);
 		plugin.getConfig().set("Arenas.Arenas", list);
