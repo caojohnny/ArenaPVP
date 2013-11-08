@@ -9,6 +9,9 @@ public class ArenaPVP extends JavaPlugin{
 
     @Override
     public void onEnable(){
+        if(!getDataFolder().exists())
+            getDataFolder().mkdir();
+   
     	if(getConfig() == null)
     	    saveDefaultConfig();
     	
