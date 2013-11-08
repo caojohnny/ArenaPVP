@@ -95,18 +95,25 @@ public class ArenaManager{
 	}
 	 
 	//create arena
-	public void createArena(Location l){
+	public Arena createArena(Location l){
 	   int num = arenaSize + 1;
 	   arenaSize++;
 	 
 	   Arena a = new Arena(l, num);
 	   arenas.add(a);
 	   
-	   plugin.getConfig().set("Arenas" + num, serializeLoc(l));
+           if(plugin.getConfig().getString("Arenas." + num).equals(null))
+               return a;
+	   plugin.getConfig().set("Arenas." + num, serializeLoc(l));
+
+           if(plugin.getConfig().getIntegerList("Arenas.Arenas").contains(num))
+               return a;
 	   List<Integer> list = plugin.getConfig().getIntegerList("Arenas.Arenas");
 	   list.add(num);
 	   plugin.getConfig().set("Arenas.Arenas", list);
 	   plugin.saveConfig();
+
+           return a;
 	}
 	
 	public void removeArena(int i){
@@ -134,13 +141,15 @@ public class ArenaManager{
 	}
 	
 	public void loadGames(){
+                arenaSize = 0;      
+
 		if(plugin.getConfig().getIntegerList("Arenas.Arenas").isEmpty()){
 			return;
 		}
 		
 		for(int i : plugin.getConfig().getIntegerList("Arenas.Arenas")){
-			Arena a = new Arena(deserializeLoc(plugin.getConfig().getString("Arenas" + i)), i);
-			arenas.add(a);
+		        Arena a = createArena(deserializeLoc(plugin.getConfig().getString(i)));
+                        a.getId() = i;
 		}
 	}
 	public String serializeLoc(Location l){
