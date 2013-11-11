@@ -8,7 +8,7 @@ import org.bukkit.Location;
 public class Arena{
 
 	//you want some info about the arena stored here
-	    int number = 0;//the arena id
+	    public int id = 0;//the arena id
 	    Location spawn = null;//spawn location for the arena
 	    List<String> players = new ArrayList<String>();//list of players
 
@@ -19,7 +19,7 @@ public class Arena{
 	    }
 
 	    public int getId(){
-	        return this.number;
+	        return this.id;
 	    }
 
 	    public List<String> getPlayers(){
