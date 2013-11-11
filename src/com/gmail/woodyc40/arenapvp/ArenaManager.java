@@ -148,8 +148,8 @@ public class ArenaManager{
 		}
 		
 		for(int i : plugin.getConfig().getIntegerList("Arenas.Arenas")){
-		        Arena a = createArena(deserializeLoc(plugin.getConfig().getString(i)));
-                        a.getId() = i;
+		        Arena a = createArena(deserializeLoc(plugin.getConfig().getString(i + "")));
+                        a.id = i;
 		}
 	}
 	public String serializeLoc(Location l){
