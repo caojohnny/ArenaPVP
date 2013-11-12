@@ -113,6 +113,10 @@ public class ArenaManager{
     }
     
     public void removeArena(int i) {
+        Arena a = getArena(i);
+        if(a == null) {
+            return;
+        }
         arenas.remove(a);
 
         plugin.getConfig().set("Arenas." + num, null);
