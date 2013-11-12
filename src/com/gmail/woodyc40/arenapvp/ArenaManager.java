@@ -117,7 +117,7 @@ public class ArenaManager{
 
         plugin.getConfig().set("Arenas." + num, null);
         List<Integer> list = new ArrayList<Integer>();
-        list.add(num);
+        list.remove(num);
         plugin.getConfig().set("Arenas.Arenas", list);
         plugin.saveConfig();    
     }
