@@ -112,6 +112,19 @@ public class ArenaManager{
         return false;
     }
 
+    public void loadGames(){
+        arenaSize = 0;      
+
+        if(plugin.getConfig().getIntegerList("Arenas.Arenas").isEmpty()){
+            return;
+        }
+                
+        for(int i : plugin.getConfig().getIntegerList("Arenas.Arenas")){
+            Arena a = createArena(deserializeLoc(plugin.getConfig().getString(i)));
+            a.getId() = i;
+        }
+    }
+
     public String serializeLoc(Location l){
         return l.getWorld().getName()+","+l.getBlockX()+","+l.getBlockY()+","+l.getBlockZ();
     }
