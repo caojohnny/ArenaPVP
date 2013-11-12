@@ -91,6 +91,8 @@ public class ArenaManager{
         armor.remove(p.getName());
         p.teleport(locs.get(p.getName()));
         locs.remove(p.getName());
+        
+        p.setFireTicks(0);
     }
 
     //create arena
@@ -101,13 +103,23 @@ public class ArenaManager{
         Arena a = new Arena(l, num);
         arenas.add(a);
 
-        plugin.getConfig().set("Arenas." + num);
+        plugin.getConfig().set("Arenas." + num, serializeLoc(l));
         List<Integer> list = new ArrayList<Integer>();
         list.add(num);
         plugin.getConfig().set("Arenas.Arenas", list);
         plugin.saveConfig();
 
         return a;
+    }
+    
+    public void removeArena(int i) {
+        arenas.remove(a);
+
+        plugin.getConfig().set("Arenas." + num, null);
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(num);
+        plugin.getConfig().set("Arenas.Arenas", list);
+        plugin.saveConfig();    
     }
 
     public boolean isInGame(Player p){
