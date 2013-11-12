@@ -15,7 +15,7 @@ public class ArenaManager{
     //save where the player teleported
     public Map<String, Location> locs = new HashMap<String, Location>();
     //make a new instance of the class
-    public static ArenaManager a = new ArenaManager();
+    public static ArenaManager am = new ArenaManager();
     //a few other fields
     Map<String, ItemStack[]> inv = new HashMap<String, ItemStack[]>();
     Map<String, ItemStack[]> armor = new HashMap<String, ItemStack[]>();
@@ -34,7 +34,7 @@ public class ArenaManager{
 
     //we want to get an instance of the manager to work with it statically
     public static ArenaManager getManager(){
-        return a;
+        return am;
     }
 
     //get an Arena object from the list
@@ -101,6 +101,12 @@ public class ArenaManager{
         Arena a = new Arena(l, num);
         arenas.add(a);
 
+        plugin.getConfig().set("Arenas." + num);
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(num);
+        plugin.getConfig().set("Arenas.Arenas", list);
+        plugin.saveConfig();
+
         return a;
     }
 
@@ -120,8 +126,8 @@ public class ArenaManager{
         }
                 
         for(int i : plugin.getConfig().getIntegerList("Arenas.Arenas")){
-            Arena a = createArena(deserializeLoc(plugin.getConfig().getString(i)));
-            a.getId() = i;
+            Arena a = createArena(deserializeLoc(plugin.getConfig().getString("Arenas." + i)));
+            a.id = i;
         }
     }
 
