@@ -119,7 +119,7 @@ public class ArenaManager{
         }
         arenas.remove(a);
 
-        plugin.getConfig().set("Arenas." + num, null);
+        plugin.getConfig().set("Arenas." + i, null);
         List<Integer> list = new ArrayList<Integer>();
         list.remove(i);
         plugin.getConfig().set("Arenas.Arenas", list);
