@@ -104,7 +104,7 @@ public class ArenaManager{
         arenas.add(a);
 
         plugin.getConfig().set("Arenas." + num, serializeLoc(l));
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> list = plugin.getConfig().getIntegerList("Arenas.Arenas");
         list.add(num);
         plugin.getConfig().set("Arenas.Arenas", list);
         plugin.saveConfig();
@@ -120,7 +120,7 @@ public class ArenaManager{
         arenas.remove(a);
 
         plugin.getConfig().set("Arenas." + i, null);
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> list = plugin.getConfig().getIntegerList("Arenas.Arenas");
         list.remove(i);
         plugin.getConfig().set("Arenas.Arenas", list);
         plugin.saveConfig();    
