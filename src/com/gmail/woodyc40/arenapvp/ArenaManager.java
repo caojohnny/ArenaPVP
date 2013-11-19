@@ -111,6 +111,16 @@ public class ArenaManager{
 
         return a;
     }
+
+    public Arena reloadArena(Location l) {
+        int num = arenaSize + 1;
+        arenaSize++;
+ 
+        Arena a = new Arena(l, num);
+        arenas.add(a);
+ 
+        return a;
+    }
     
     public void removeArena(int i) {
         Arena a = getArena(i);
@@ -142,7 +152,7 @@ public class ArenaManager{
         }
                 
         for(int i : plugin.getConfig().getIntegerList("Arenas.Arenas")){
-            Arena a = createArena(deserializeLoc(plugin.getConfig().getString("Arenas." + i)));
+            reloadArena(i);
             a.id = i;
         }
     }
@@ -152,6 +162,6 @@ public class ArenaManager{
     }
     public Location deserializeLoc(String s){
         String[] st = s.split(",");
-        return new Location(Bukkit.getWorld(st[1]), Integer.parseInt(st[1]), Integer.parseInt(st[2]), Integer.parseInt(st[3]));
+        return new Location(Bukkit.getWorld(st[0]), Integer.parseInt(st[1]), Integer.parseInt(st[2]), Integer.parseInt(st[3]));
     }
 }
