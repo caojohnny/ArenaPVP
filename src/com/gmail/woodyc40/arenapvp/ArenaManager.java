@@ -152,7 +152,7 @@ public class ArenaManager{
         }
                 
         for(int i : plugin.getConfig().getIntegerList("Arenas.Arenas")){
-            reloadArena(i);
+            Arena a = reloadArena(deserializeLoc(plugin.getConfig().getString("Arenas." + i)));
             a.id = i;
         }
     }
