@@ -9,7 +9,7 @@ public class Arena{
 
     //you want some info about the arena stored here
     public int id = 0;//the arena id
-    Location spawn = null;//spawn location for the arena
+    public Location spawn = null;//spawn location for the arena
     List<String> players = new ArrayList<String>();//list of players
 
     //now let's make a few getters/setters, and a constructor
