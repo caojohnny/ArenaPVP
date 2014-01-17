@@ -62,6 +62,7 @@ public class ArenaManager{
         p.getInventory().setArmorContents(null);
         p.getInventory().clear();
 
+        locs.put(p.getName(), p.getLocation());
         p.teleport(a.spawn);//teleport to the arena spawn
     }
 
